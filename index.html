@@ -2,241 +2,410 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>我们的2025年度总结 ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>2025年度报告</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
     
     <style>
-        /* 全局样式设置 */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; overflow: hidden; font-family: "Microsoft YaHei", sans-serif; background-color: #000; }
+        /* ==================== 1. 全局基础设置 ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { position: relative; width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif; }
         
-        /* 每一页的容器 */
-        .swiper-container { width: 100%; height: 100%; }
-        .swiper-slide {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            background-size: cover; /* 背景图充满 */
-            background-position: center;
+        .swiper { width: 100%; height: 100%; opacity: 0; transition: opacity 1.5s ease 0.5s; }
+        .content-visible { opacity: 1; }
+        .swiper-slide { position: relative; width: 100%; height: 100%; overflow: hidden; }
+        
+        .bg-full { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; z-index: 0; pointer-events: none; }
+        
+        /* 遮罩 */
+        .shade-top { position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); z-index: 1; pointer-events: none; }
+        .shade-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); z-index: 1; pointer-events: none; }
+        .cinematic-shade-top { position: absolute; top: 0; left: 0; width: 100%; height: 65%; background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%); z-index: 8; pointer-events: none; }
+        .cinematic-shade-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); z-index: 8; pointer-events: none; }
+
+        .arrow-up-hint { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); opacity: 0.6; animation: floatUp 2s infinite; z-index: 20; }
+        .arrow-icon-up { width: 16px; height: 16px; border-top: 2px solid #fff; border-right: 2px solid #fff; transform: rotate(-45deg); }
+        @keyframes floatUp { 0%,100%{transform:translate(-50%, 0);opacity:0.3;} 50%{transform:translate(-50%, -8px);opacity:0.8;} }
+        
+        .animate__slower { animation-duration: 2s !important; }
+        .animate__slowest { animation-duration: 2.5s !important; }
+
+        /* ==================== 2. 伪装加载页 ==================== */
+        #loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #ffffff; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out; }
+        #loading-screen.fade-out { opacity: 0; transform: scale(1.05); pointer-events: none; }
+        .app-logo { width: 100px; height: 100px; margin-bottom: 40px; animation: breathe 2s infinite ease-in-out; border-radius: 22px; box-shadow: 0 15px 35px rgba(255, 107, 107, 0.2); }
+        @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.85; } }
+        .loading-text { font-size: 16px; color: #333; letter-spacing: 1px; font-weight: 500; margin-bottom: 10px; }
+        .loading-percent { font-size: 14px; color: #888; font-family: "Menlo", monospace; }
+
+        /* ==================== 3. 页面样式 ==================== */
+
+        /* Page 1: 遇见 */
+        .story-content-top-left { position: absolute; top: 13%; left: 28px; max-width: 85%; z-index: 10; pointer-events: none; color: #fff; text-align: left; }
+        .story-text-normal { font-size: 17px; line-height: 1.6; opacity: 0.9; margin-bottom: 12px; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 300; }
+        .highlight-text { display: inline-block; font-size: 28px; font-weight: 700; color: #f6d365; background: linear-gradient(120deg, #ffe259 0%, #ffa751 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 10px rgba(255, 167, 81, 0.4)); margin: 0 0 20px 0; letter-spacing: 1px; }
+        .popup-image-container { position: absolute; bottom: 10%; right: -5px; width: 42%; max-width: 180px; z-index: 12; transform: rotate(2deg); }
+        .popup-image-contontent { width: 100%; border-radius: 4px; background: #fff; padding: 6px 6px 25px 6px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); overflow: hidden; }
+        .popup-image-contontent img { width: 100%; display: block; filter: contrast(1.05); }
+
+        /* Page 2: 热力图 */
+        .heatmap-bg { opacity: 0; animation: subtleBreatheBg 10s ease-in-out infinite alternate; } @keyframes subtleBreatheBg { 0% { transform: scale(1); } 100% { transform: scale(1.03); } }
+        .topic-intro-left { position: absolute; top: 12%; left: 28px; max-width: 80%; z-index: 10; pointer-events: none; color: rgba(255,255,255,0.8); text-align: left; font-size: 18px; line-height: 1.6; font-weight: 300; letter-spacing: 1px; }
+        .topic-highlight { color: #fff; font-weight: 500; font-size: 20px; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        .topic-question-right { position: absolute; bottom: 16%; right: 28px; max-width: 80%; z-index: 10; pointer-events: none; text-align: right; }
+        .question-text { display: inline-block; font-size: 22px; font-weight: 600; color: #FFF8E7; text-shadow: 0 0 15px rgba(255, 248, 231, 0.4); font-family: "PingFang SC", serif; letter-spacing: 1px; transform: rotate(-2deg); }
+
+        /* Page 3: 美罗城 */
+        .top-layer { transition: opacity 1.5s ease-in-out; opacity: 1; z-index: 1; } .top-layer.do-fade { opacity: 0; }
+        #fireworks-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+        .watercolor-particle { position: absolute; border-radius: 50%; filter: blur(4px); mix-blend-mode: screen; pointer-events: none; transform: scale(0); opacity: 0; will-change: transform, opacity; }
+        .swipe-capsule-hint { position: absolute; top: 65%; left: 50%; transform: translateX(-50%); z-index: 20; pointer-events: none; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3); padding: 12px 28px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); color: #fff; font-size: 18px; font-weight: 600; letter-spacing: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); animation: capsulePulse 2s infinite ease-in-out; } @keyframes capsulePulse { 0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; } 50% { transform: translateX(-50%) scale(1.05); opacity: 1; } }
+        .reveal-text-container { position: absolute; bottom: 0; left: 0; width: 100%; padding: 0 20px 90px 20px; z-index: 10; pointer-events: none; opacity: 0; transition: opacity 1s ease-in-out; } .reveal-text-container.show { opacity: 1; }
+        .single-reveal-text { font-size: 24px; line-height: 1.5; font-weight: 600; text-align: center; color: #FFFDF0; font-family: "Didot", "Bodoni MT", "Noto Serif SC", "Songti SC", "PingFang SC", serif; text-shadow: 0 0 10px rgba(255, 220, 150, 0.8), 0 0 20px rgba(255, 200, 100, 0.6), 0 0 30px rgba(255, 180, 50, 0.4); letter-spacing: 1.5px; }
+
+        /* Page 3.5: 深夜独处 */
+        .firefly-container { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+        .firefly { position: absolute; width: 4px; height: 4px; background: #fff; border-radius: 50%; box-shadow: 0 0 10px #fff, 0 0 20px #f6d365; opacity: 0; animation: fireflyFloat 10s infinite ease-in-out; }
+        .firefly:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; } .firefly:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; } .firefly:nth-child(3) { top: 40%; left: 50%; animation-delay: 4s; }
+        @keyframes fireflyFloat { 0% { transform: translate(0, 0); opacity: 0; } 50% { transform: translate(30px, -30px); opacity: 0.4; } 100% { transform: translate(-20px, -60px); opacity: 0; } }
+        .midnight-text-left { position: absolute; top: 12%; left: 24px; width: 60%; text-align: left; z-index: 10; color: #fff; pointer-events: none; }
+        .midnight-date { font-size: 36px; font-weight: 800; margin-bottom: 8px; background: linear-gradient(to right, #fff, #f6d365); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .midnight-fact { font-size: 18px; line-height: 1.6; opacity: 0.95; font-weight: 300; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
+        .midnight-highlight { color: #f6d365; font-weight: 600; font-size: 20px; margin: 0 2px; text-shadow: 0 0 10px rgba(246, 211, 101, 0.4); }
+        .midnight-text-right { position: absolute; top: 30%; right: 24px; width: 65%; text-align: right; z-index: 10; color: #fff; pointer-events: none; }
+        .midnight-thought { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.9); font-style: italic; font-weight: 300; text-shadow: 0 1px 4px rgba(0,0,0,0.6); border-right: 2px solid rgba(255,255,255,0.3); padding-right: 12px; }
+
+        /* Page 4: 星河旅途 */
+        .journey-title { position: absolute; top: 10%; left: 28px; z-index: 10; color: #fff; font-size: 20px; font-weight: 300; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); opacity: 0; }
+        .journey-scroll-container { position: absolute; top: 0; left: 0; height: 100%; width: 300%; display: flex; align-items: center; transform: translateX(0); will-change: transform; }
+        .start-journey .journey-scroll-container { animation: scrollJourney 18s linear forwards; }
+        @keyframes scrollJourney { 0% { transform: translateX(0); } 100% { transform: translateX(-66.66%); } }
+        .journey-path-svg { position: absolute; top: 50%; left: 5%; width: 90%; height: 300px; transform: translateY(-50%); z-index: 5; overflow: visible; opacity: 0.6; }
+        .path-line { fill: none; stroke: url(#pathGradient); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 8px rgba(255, 223, 128, 0.8)); stroke-dasharray: 2000; stroke-dashoffset: 2000; }
+        .start-journey .path-line { animation: drawPath 18s linear forwards; }
+        @keyframes drawPath { to { stroke-dashoffset: 0; } }
+        /* 路径小人装饰 */
+        .walkers-group { position: absolute; offset-path: path("M10,150 C150,50 300,250 450,150 S 750,50 900,150 S 1200,250 1350,150 S 1650,50 1800,150"); offset-distance: 0%; top: 50%; left: 5%; width: 60px; height: 60px; z-index: 15; transform: translateY(-50%) scale(0.8); }
+        .start-journey .walkers-group { animation: walkAlongPath 18s linear forwards, walkerBounce 0.8s infinite alternate ease-in-out; }
+        @keyframes walkAlongPath { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+        @keyframes walkerBounce { from { transform: translateY(-50%) scale(0.8) translateY(0); } to { transform: translateY(-50%) scale(0.8) translateY(-10px); } }
+        .walker-avatar { position: absolute; border-radius: 50%; box-shadow: 0 0 15px currentColor; filter: blur(1px); }
+        .walker-1 { width: 30px; height: 30px; background: #f6d365; color: #f6d365; left: 0; top: 10px; }
+        .walker-2 { width: 25px; height: 25px; background: #ff9a9e; color: #ff9a9e; right: 0; top: 0; animation-delay: 0.2s; }
+        /* 固定GIF */
+        .fixed-couple-container { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 140px; height: auto; z-index: 50; pointer-events: none; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); }
+        .fixed-couple-container img { width: 100%; display: block; }
+        /* 站点 */
+        .journey-stop { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .journey-stop.active { opacity: 1; transform: translateY(-65%); }
+        .stop-photo { width: 140px; height: 160px; background: #fff; padding: 8px 8px 30px 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: rotate(3deg); margin-bottom: 15px; }
+        .stop-photo img { width: 100%; height: 124px; object-fit: cover; display: block; filter: contrast(1.1); }
+        .stop-sign { background: linear-gradient(90deg, #ff9a44, #fc6076); padding: 8px 18px; border-radius: 30px; border: 2px solid #fff; color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 5px 15px rgba(252, 96, 118, 0.5); text-shadow: 0 1px 2px rgba(0,0,0,0.3); transform: rotate(-2deg); }
+        #stop-1 { left: 15%; } #stop-2 { left: 30%; margin-top: 80px; } #stop-3 { left: 45%; } #stop-4 { left: 60%; margin-top: -60px; } #stop-5 { left: 75%; } #stop-6 { left: 90%; margin-top: 70px; }
+
+        /* Page 5: 年度数据 */
+        .data-container-top { position: absolute; top: 8%; left: 28px; right: 28px; z-index: 10; }
+        .data-container-bottom { position: absolute; top: 62%; left: 28px; right: 28px; z-index: 10; }
+        .data-title { font-size: 26px; font-weight: 600; margin-bottom: 25px; letter-spacing: 2px; color: #2c3e50; text-align: left; }
+        .data-list { list-style: none; padding: 0; }
+        .data-list li { margin-bottom: 15px; display: flex; align-items: baseline; justify-content: flex-start; color: #4a5568; font-size: 18px; line-height: 1.5; font-weight: 400; }
+        .data-icon { margin-right: 12px; color: #d4a017; font-size: 14px; }
+        .data-highlight { font-size: 34px; font-weight: 800; color: #d4a017; margin: 0 6px; font-family: "PingFang SC", sans-serif; text-shadow: none; }
+
+        /* =========== 🌟 Page 6: 密码锁 (NEW!) 🌟 =========== */
+        
+        /* 锁屏界面容器 */
+        .lock-screen-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 20; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        }
+        .lock-screen-container.unlocked {
+            opacity: 0; transform: scale(1.1); pointer-events: none;
         }
 
-        /* 遮罩层：让文字更清晰，覆盖在背景图上 */
-        .mask {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* 黑色半透明遮罩 */
-            z-index: 1;
-        }
+        /* 提示字和圆点 */
+        .lock-header { text-align: center; margin-bottom: 40px; }
+        .lock-title { color: #fff; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; font-weight: 300; }
+        .lock-dots { display: flex; justify-content: center; gap: 15px; }
+        .lock-dot { width: 12px; height: 12px; border: 1px solid rgba(255,255,255,0.5); border-radius: 50%; transition: all 0.2s; }
+        .lock-dot.filled { background: #fff; border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .lock-dot.error { border-color: #ff6b6b; background: rgba(255,107,107,0.3); animation: shake 0.4s ease-in-out; }
 
-        /* 内容区域 */
-        .content {
-            position: relative;
-            z-index: 2; /* 保证内容在遮罩层上面 */
-            color: #fff;
-            padding: 20px;
-            width: 80%;
+        /* 9宫格键盘 */
+        .lock-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 280px; }
+        .pad-btn {
+            width: 70px; height: 70px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; font-size: 28px; font-weight: 400;
+            display: flex; justify-content: center; align-items: center;
+            margin: 0 auto; cursor: pointer;
+            transition: background 0.1s;
+            -webkit-tap-highlight-color: transparent;
         }
+        .pad-btn:active { background: rgba(255,255,255,0.3); }
+        .pad-btn.empty { border: none; background: transparent; pointer-events: none; } /* 空位 */
 
-        /* 照片样式：拍立得风格 */
-        .photo-frame {
-            background: #fff;
-            padding: 10px 10px 40px 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transform: rotate(-3deg);
-            margin-bottom: 30px;
-            max-width: 100%;
-        }
-        .photo-frame img {
-            width: 100%;
-            display: block;
-        }
+        @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-10px);} 75%{transform:translateX(10px);} }
 
-        /* 文字样式 */
-        h2 { font-size: 24px; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        p { font-size: 16px; line-height: 1.6; opacity: 0.9; }
-
-        /* 上滑提示箭头 */
-        .arrow-up {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            border-top: 2px solid #fff;
-            border-right: 2px solid #fff;
-            transform: rotate(-45deg);
-            animation: arrowMove 1.5s infinite;
-            z-index: 10;
+        /* 解锁后的真实内容容器 (等待你填充) */
+        .unlocked-content {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; opacity: 0; transition: opacity 1s ease 0.8s;
+            display: flex; justify-content: center; align-items: center;
+            /* 只是个临时的居中样式 */
         }
-        @keyframes arrowMove {
-            0% { bottom: 20px; opacity: 0; }
-            50% { bottom: 30px; opacity: 1; }
-            100% { bottom: 40px; opacity: 0; }
-        }
+        .unlocked-content.show { opacity: 1; }
+        
+        /* 临时占位文字样式 */
+        .placeholder-text { color: #fff; font-size: 20px; font-weight: 300; letter-spacing: 2px; }
 
-        /* 音乐按钮 */
-        .music-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 30px;
-            height: 30px;
-            z-index: 100;
-            background: url('https://img.icons8.com/ios-filled/50/ffffff/music--v1.png') no-repeat center/contain;
-            cursor: pointer;
-            opacity: 0.8;
-        }
-        .music-spin { animation: spin 3s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        /* ---- 页面背景颜色配置 (如果不用背景图) ---- */
-        .page1 { background: linear-gradient(to bottom, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); }
-        .page2 { background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); }
-        .page3 { background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); }
-        .page4 { background: linear-gradient(to top, #30cfd0 0%, #330867 100%); }
     </style>
 </head>
 <body>
 
-    <audio id="bgm" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-    <div class="music-btn music-spin" id="musicBtn"></div>
+    <div id="loading-screen">
+        <img src="images/logo_app.webp" alt="App Logo" class="app-logo">
+        <div class="loading-text">正在生成您的年度报告...</div>
+        <div class="loading-percent" id="loading-num">0%</div>
+    </div>
 
-    <div class="swiper-container">
+    <div class="swiper swiper-v" id="main-swiper">
         <div class="swiper-wrapper">
             
-            <div class="swiper-slide page1">
-                <div class="mask"></div>
-                <div class="content">
-                    <div class="photo-frame animate__animated" data-ani="animate__fadeInDown">
-                        <img src="images/cover.jpg" alt="封面">
-                    </div>
-                    <h2 class="animate__animated" data-ani="animate__fadeInUp" style="animation-delay: 0.5s">我们的 2025</h2>
-                    <p class="animate__animated" data-ani="animate__fadeInUp" style="animation-delay: 1s">
-                        向下滑动，开启回忆<br>👇
-                    </p>
+            <div class="swiper-slide">
+                <div class="bg-full" style="background-image: url('https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?q=80&w=1000&auto=format&fit=crop'); filter: brightness(0.65);"></div>
+                <div class="cinematic-shade-top"></div>
+                <div class="story-content-top-left">
+                    <p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 0.5s">2025年，你在她说上一共遇见了</p>
+                    <div class="highlight-text animate__animated animate__fadeIn animate__slower" style="animation-delay: 1.5s">鬼知道多少人</div>
+                    <p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 2.8s; margin-top: 25px;">但是在11月10日，你和</p>
+                    <div class="highlight-text animate__animated animate__fadeIn animate__slower" style="animation-delay: 3.8s">天真的贝叶斯</div>
+                    <p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 4.8s">匹配上了。</p>
                 </div>
-                <div class="arrow-up"></div>
+                <div class="popup-image-container animate__animated animate__fadeInUp animate__slower" style="animation-delay: 7.2s"><div class="popup-image-contontent"><img src="images/profile_screenshot.jpg" alt="资料截图"></div></div>
+                <div class="arrow-up-hint" style="animation-delay: 8s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div>
             </div>
 
-            <div class="swiper-slide page2">
-                <div class="mask"></div>
-                <div class="content">
-                    <div class="photo-frame animate__animated" data-ani="animate__zoomIn">
-                        <img src="images/photo1.jpg" alt="回忆1">
-                    </div>
-                    <h2 class="animate__animated" data-ani="animate__fadeInRight">第一次去海边</h2>
-                    <p class="animate__animated" data-ani="animate__fadeInUp" style="animation-delay: 0.5s">
-                        记得那天的风很大，<br>
-                        你笑得特别甜。<br>
-                        2025.05.20
-                    </p>
-                </div>
-                <div class="arrow-up"></div>
+            <div class="swiper-slide">
+                <div class="bg-full heatmap-bg animate__animated animate__fadeIn animate__slowest" style="animation-delay: 1.8s; background-image: url('images/bg_heatmap.png');"></div>
+                <div class="topic-intro-left animate__animated animate__fadeInDown" style="animation-delay: 0.5s">期间，<span class="topic-highlight">你们聊的话题包括：</span></div>
+                <div class="topic-question-right animate__animated animate__fadeInUp" style="animation-delay: 3s"><span class="question-text">你觉得这个小伙子有趣吗？</span></div>
+                <div class="arrow-up-hint" style="animation-delay: 4s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div>
             </div>
 
-            <div class="swiper-slide page3">
-                <div class="mask"></div>
-                <div class="content">
-                    <div class="photo-frame animate__animated" data-ani="animate__rotateInDownLeft">
-                        <img src="images/photo2.jpg" alt="回忆2">
-                    </div>
-                    <h2 class="animate__animated" data-ani="animate__fadeInLeft">平淡的小幸福</h2>
-                    <p class="animate__animated" data-ani="animate__fadeInUp" style="animation-delay: 0.5s">
-                        一起吃火锅，<br>
-                        一起窝在沙发看电影。<br>
-                        这就是我想要的生活。
-                    </p>
-                </div>
-                <div class="arrow-up"></div>
+            <div class="swiper-slide" id="metro-slide">
+                <div class="bg-full" style="background-image: url('images/bg_metro_text.jpg');"></div>
+                <div class="bg-full top-layer" id="metroTopLayer" style="background-image: url('images/bg_metro.jpg');"></div>
+                <div id="fireworks-container"></div>
+                <div class="cinematic-shade-bottom"></div>
+                <div class="swipe-capsule-hint" id="metroHint">左滑开启</div>
+                <div class="reveal-text-container" id="metroRevealBox"></div>
+                <div class="arrow-up-hint"><div class="arrow-icon-up"></div></div>
             </div>
 
-            <div class="swiper-slide page4">
-                <div class="mask"></div>
-                <div class="content">
-                    <h2 class="animate__animated" data-ani="animate__heartBeat" data-ani-infinite="true">未来可期</h2>
-                    <p class="animate__animated" data-ani="animate__fadeInUp" style="margin-top:20px;">
-                        2025 过去了，<br>
-                        但我们的故事才刚刚开始。<br>
-                        2026，请多指教 ❤️
-                    </p>
+            <div class="swiper-slide">
+                <div class="bg-full" style="background-image: url('images/photo_midnight.jpg'); filter: brightness(0.6);"></div>
+                <div class="shade-top"></div>
+                <div class="shade-bottom"></div>
+                <div class="firefly-container"><div class="firefly"></div><div class="firefly"></div><div class="firefly"></div><div class="firefly"></div></div>
+                <div class="midnight-text-left animate__animated animate__fadeInDown animate__slower" style="animation-delay: 0.5s">
+                    <div class="midnight-date">12月7日</div>
+                    <div class="midnight-fact">他在你家待到了<br><span class="midnight-highlight">凌晨 1:19</span> 才走。</div>
+                </div>
+                <div class="midnight-text-right animate__animated animate__fadeInRight animate__slower" style="animation-delay: 2.0s">
+                    <div class="midnight-thought">此时的他还不知道，<br>以后会经常和你玩到这么晚。</div>
+                </div>
+                <div class="arrow-up-hint" style="animation-delay: 4s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div>
+            </div>
+
+            <div class="swiper-slide" id="journey-slide" style="background: #0a0a1a;">
+                <div class="journey-scroll-container">
+                    <div class="bg-full" style="background-image: url('https://images.unsplash.com/photo-1536704689578-8028456c3513?q=80&w=1000&auto=format&fit=crop'); filter: brightness(0.6);"></div>
+                    <svg class="journey-path-svg" viewBox="0 0 1800 300" preserveAspectRatio="none">
+                        <defs><linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f6d365;stop-opacity:0" /><stop offset="20%" style="stop-color:#f6d365;stop-opacity:1" /><stop offset="80%" style="stop-color:#ff9a9e;stop-opacity:1" /><stop offset="100%" style="stop-color:#ff9a9e;stop-opacity:0" /></linearGradient></defs>
+                        <path class="path-line" d="M10,150 C150,50 300,250 450,150 S 750,50 900,150 S 1200,250 1350,150 S 1650,50 1800,150" />
+                    </svg>
+                    <div class="walkers-group"><div class="walker-avatar walker-1"></div><div class="walker-avatar walker-2"></div></div>
+                    <div class="journey-stop" id="stop-1" data-time="2500"><div class="stop-photo"><img src="images/loc_minhang.jpg" alt="闵行文化公园"></div><div class="stop-sign">闵行文化公园</div></div>
+                    <div class="journey-stop" id="stop-2" data-time="5000"><div class="stop-photo"><img src="images/loc_laoshifu.jpg" alt="上海老市府"></div><div class="stop-sign" style="background: linear-gradient(90deg, #4facfe, #00f2fe);">上海老市府</div></div>
+                    <div class="journey-stop" id="stop-3" data-time="7500"><div class="stop-photo"><img src="images/loc_jiaoda.jpg" alt="交大校园"></div><div class="stop-sign" style="background: linear-gradient(90deg, #43e97b, #38f9d7);">交大校园</div></div>
+                    <div class="journey-stop" id="stop-4" data-time="10000"><div class="stop-photo"><img src="images/loc_game.jpg" alt="游戏博物馆"></div><div class="stop-sign" style="background: linear-gradient(90deg, #fa709a, #fee140);">游戏博物馆</div></div>
+                    <div class="journey-stop" id="stop-5" data-time="12500"><div class="stop-photo"><img src="images/loc_mihoyo.jpg" alt="米哈游园区"></div><div class="stop-sign" style="background: linear-gradient(90deg, #a18cd1, #fbc2eb);">米哈游园区</div></div>
+                    <div class="journey-stop" id="stop-6" data-time="15000"><div class="stop-photo"><img src="images/loc_xintiandi.jpg" alt="新天地"></div><div class="stop-sign">新天地</div></div>
+                </div>
+                <div class="cinematic-shade-top"></div>
+                <div class="journey-title animate__animated animate__fadeInDown" style="animation-delay: 0.5s">今年，你们的足迹遍布：</div>
+                <div class="fixed-couple-container"><img src="images/walking_couple.gif" alt="手牵手行走"></div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="bg-full animate__animated animate__fadeIn animate__slower" style="background-image: url('images/image_18.png');"></div>
+                <div class="data-container-top">
+                    <div class="data-title animate__animated animate__fadeInDown" style="animation-delay: 0.8s;">今年，你们：</div>
+                    <ul class="data-list">
+                        <li class="animate__animated animate__fadeInUp" style="animation-delay: 1.2s;"><span class="data-icon">●</span><span>一共联机玩了<span class="data-highlight">5</span>款游戏</span></li>
+                        <li class="animate__animated animate__fadeInUp" style="animation-delay: 1.5s;"><span class="data-icon">●</span><span>最远相距<span class="data-highlight">2240</span>公里</span></li>
+                        <li class="animate__animated animate__fadeInUp" style="animation-delay: 1.8s;"><span class="data-icon">●</span><span>2人一共感冒<span class="data-highlight">3</span>次</span></li>
+                    </ul>
+                </div>
+                <div class="data-container-bottom">
+                    <ul class="data-list">
+                        <li class="animate__animated animate__fadeInUp" style="animation-delay: 2.1s;"><span class="data-icon">●</span><span>Tj为23交付了<span class="data-highlight">190</span>行代码</span></li>
+                        <li class="animate__animated animate__fadeInUp" style="animation-delay: 2.4s;"><span class="data-icon">●</span><span>23为Tj写下<span class="data-highlight">27</span>个字</span></li>
+                    </ul>
+                </div>
+                <div class="arrow-up-hint" style="animation-delay: 3.5s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div>
+            </div>
+
+            <div class="swiper-slide" id="password-slide">
+                <div class="bg-full" style="background-image: url('images/photo_midnight.jpg'); filter: blur(20px) brightness(0.4);"></div>
+                
+                <div class="unlocked-content" id="unlockedContent">
+                    <div class="placeholder-text">此处展示解锁后的真正内容</div>
+                </div>
+
+                <div class="lock-screen-container" id="lockScreen">
+                    <div class="lock-header">
+                        <div class="lock-title">请输入解锁密码</div>
+                        <div class="lock-dots">
+                            <div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div>
+                            <div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div>
+                        </div>
+                    </div>
+                    <div class="lock-pad" id="keypad">
+                        <div class="pad-btn" data-num="1">1</div><div class="pad-btn" data-num="2">2</div><div class="pad-btn" data-num="3">3</div>
+                        <div class="pad-btn" data-num="4">4</div><div class="pad-btn" data-num="5">5</div><div class="pad-btn" data-num="6">6</div>
+                        <div class="pad-btn" data-num="7">7</div><div class="pad-btn" data-num="8">8</div><div class="pad-btn" data-num="9">9</div>
+                        <div class="pad-btn empty"></div><div class="pad-btn" data-num="0">0</div><div class="pad-btn empty"></div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
     <script>
-        // 音乐控制
-        const bgm = document.getElementById('bgm');
-        const musicBtn = document.getElementById('musicBtn');
-        
-        // 点击屏幕任何地方开始播放音乐（解决浏览器自动播放限制）
-        document.body.addEventListener('touchstart', function() {
-            if (bgm.paused) {
-                bgm.play();
-                musicBtn.classList.add('music-spin');
-            }
-        }, { once: true });
+        // --- 1. 加载页逻辑 ---
+        window.onload = function() {
+            let percent = 0; const numEl = document.getElementById('loading-num'); const screenEl = document.getElementById('loading-screen'); const swiperEl = document.getElementById('main-swiper');
+            const timer = setInterval(() => {
+                percent += Math.floor(Math.random() * 5) + 1; if (percent > 100) percent = 100; numEl.innerText = percent + '%';
+                if (percent === 100) {
+                    clearInterval(timer);
+                    setTimeout(() => {
+                        screenEl.classList.add('fade-out'); swiperEl.classList.add('content-visible');
+                        setTimeout(() => { if(mySwiper) swiperAnimate(mySwiper); }, 500);
+                        setTimeout(() => { screenEl.style.display = 'none'; }, 1600);
+                    }, 500);
+                }
+            }, 40);
+        };
 
-        musicBtn.addEventListener('click', function() {
-            if (bgm.paused) {
-                bgm.play();
-                this.classList.add('music-spin');
-            } else {
-                bgm.pause();
-                this.classList.remove('music-spin');
-            }
-        });
-
-        // 初始化 Swiper
-        var mySwiper = new Swiper('.swiper-container', {
-            direction: 'vertical', // 竖向滑动
-            loop: false, // 是否循环
-            mousewheel: true,
-            
-            // 切换页面时触发动画
+        // --- 2. Swiper 初始化 ---
+        var mySwiper = new Swiper('.swiper-v', {
+            direction: 'vertical', speed: 1000, mousewheel: true, effect: 'fade', fadeEffect: { crossFade: true }, touchStartPreventDefault: false,
+            noSwipingSelector: '#journey-slide',
             on: {
-                init: function () {
+                slideChangeTransitionEnd: function () { 
                     swiperAnimate(this);
-                }, 
-                slideChangeTransitionEnd: function () {
-                    swiperAnimate(this);
-                } 
+                    
+                    // 美罗城重置
+                    if (this.activeIndex !== 2) {
+                         setTimeout(() => { 
+                            const topLayer = document.getElementById('metroTopLayer'); const hint = document.getElementById('metroHint'); const revealBox = document.getElementById('metroRevealBox'); 
+                            if(topLayer) topLayer.classList.remove('do-fade'); 
+                            if(hint) hint.style.display = 'flex'; 
+                            if(revealBox) { revealBox.classList.remove('show'); setTimeout(() => { revealBox.innerHTML = ''; }, 500); } 
+                            document.getElementById('fireworks-container').innerHTML = ''; 
+                        }, 500);
+                    }
+
+                    // 星河旅途动画 (Index 4)
+                    const journeySlide = document.getElementById('journey-slide');
+                    if (journeySlide) {
+                        const stops = journeySlide.querySelectorAll('.journey-stop');
+                        if (this.activeIndex === 4) {
+                            journeySlide.classList.add('start-journey');
+                            stops.forEach(stop => {
+                                const delayTime = parseInt(stop.getAttribute('data-time'));
+                                setTimeout(() => { stop.classList.add('active'); }, delayTime);
+                            });
+                        } else {
+                            journeySlide.classList.remove('start-journey');
+                            stops.forEach(stop => { stop.classList.remove('active'); });
+                        }
+                    }
+                },
             }
         });
 
-        // 简单的动画控制函数
+        // 动画函数
         function swiperAnimate(swiper) {
-            // 清除所有动画
-            const allAnimated = document.querySelectorAll('.animate__animated');
-            allAnimated.forEach(el => {
-                const aniName = el.getAttribute('data-ani');
-                el.classList.remove(aniName);
-                el.style.opacity = '0'; // 隐藏
-            });
-
-            // 给当前页添加动画
+            const slides = swiper.slides;
+            for (let i = 0; i < slides.length; i++) {
+                const slide = slides[i];
+                const allAnimated = slide.querySelectorAll('.animate__animated');
+                allAnimated.forEach(el => { el.classList.remove(el.getAttribute('data-ani')); el.style.opacity = '0'; el.style.animationName = 'none'; });
+            }
             const currentSlide = swiper.slides[swiper.activeIndex];
             const currentAnimated = currentSlide.querySelectorAll('.animate__animated');
-            
             currentAnimated.forEach(el => {
-                const aniName = el.getAttribute('data-ani');
-                el.style.opacity = '1'; // 显示
-                el.classList.add(aniName);
-                
-                // 处理 infinite (无限循环)
-                if(el.getAttribute('data-ani-infinite')){
-                   el.classList.add('animate__infinite'); 
+                void el.offsetWidth; 
+                el.style.opacity = '1';
+                el.style.animationName = ''; 
+                if(el.getAttribute('data-ani')) el.classList.add(el.getAttribute('data-ani'));
+            });
+        }
+
+        // --- 3. 交互逻辑 (美罗城) ---
+        function launchWatercolorFireworks() { const container = document.getElementById('fireworks-container'); if(!container) return; const centerX = window.innerWidth / 2; const centerY = window.innerHeight * 0.35; for (let w = 0; w < 5; w++) { setTimeout(() => { for (let i = 0; i < 60; i++) { createParticle(container, centerX, centerY); } }, w * 250); } }
+        function createParticle(container, x, y) { const particle = document.createElement('div'); particle.classList.add('watercolor-particle'); container.appendChild(particle); const size = Math.random() * 30 + 10 + 'px'; particle.style.width = size; particle.style.height = size; const hues = [45, 35, 330, 25]; const hue = hues[Math.floor(Math.random() * hues.length)]; particle.style.background = `radial-gradient(circle, hsla(${hue}, 100%, 70%, 1) 0%, hsla(${hue}, 100%, 60%, 0) 70%)`; particle.style.left = x + 'px'; particle.style.top = y + 'px'; const angle = Math.random() * Math.PI * 2; const distance = Math.random() * 250 + 80; const destX = x + Math.cos(angle) * distance; const destY = y + Math.sin(angle) * distance; const duration = Math.random() * 1.5 + 1.5 + 's'; setTimeout(() => { particle.style.transition = `all ${duration} cubic-bezier(0.25, 0.46, 0.45, 0.94)`; particle.style.transform = `translate(${destX - x}px, ${destY - y}px) scale(${Math.random() * 2 + 1})`; particle.style.opacity = '0.9'; setTimeout(() => { particle.style.opacity = '0'; }, parseFloat(duration) * 1000 * 0.7); }, 50); setTimeout(() => { particle.remove(); }, 3500); }
+        
+        const metroSlide = document.getElementById('metro-slide'); const metroTopLayer = document.getElementById('metroTopLayer'); const metroHint = document.getElementById('metroHint'); const metroRevealBox = document.getElementById('metroRevealBox'); let touchStartX = 0; let touchStartY = 0; let isRevealed = false;
+        if (metroSlide && metroTopLayer) { metroSlide.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; }, {passive: true}); metroSlide.addEventListener('touchend', function(e) { if (isRevealed) return; let touchEndX = e.changedTouches[0].screenX; let touchEndY = e.changedTouches[0].screenY; let diffX = touchStartX - touchEndX; let diffY = Math.abs(touchStartY - touchEndY); if (diffX > 50 && diffX > diffY * 1.5) { metroTopLayer.classList.add('do-fade'); if(metroHint) metroHint.style.display = 'none'; launchWatercolorFireworks(); if(metroRevealBox) { metroRevealBox.innerHTML = '<p class="single-reveal-text">11月21日，你与他第一次线下见面，<br>是否符合你想象中的样子？</p>'; metroRevealBox.classList.add('show'); } isRevealed = true; } }, {passive: true}); }
+
+        // --- 4. 密码锁逻辑 (Page 6) ---
+        const correctPass = "147369";
+        let inputPass = "";
+        const dots = document.querySelectorAll('.lock-dot');
+        const lockScreen = document.getElementById('lockScreen');
+        const unlockedContent = document.getElementById('unlockedContent');
+        const keypad = document.getElementById('keypad');
+
+        if(keypad) {
+            keypad.addEventListener('click', function(e) {
+                if(e.target.classList.contains('pad-btn') && !e.target.classList.contains('empty')) {
+                    const num = e.target.getAttribute('data-num');
+                    if(inputPass.length < 6) {
+                        // 记录输入
+                        inputPass += num;
+                        // 点亮圆点
+                        dots[inputPass.length - 1].classList.add('filled');
+                        
+                        // 检查是否输完6位
+                        if(inputPass.length === 6) {
+                            setTimeout(() => {
+                                if(inputPass === correctPass) {
+                                    // 密码正确：解锁
+                                    lockScreen.classList.add('unlocked');
+                                    unlockedContent.classList.add('show');
+                                } else {
+                                    // 密码错误：震动并重置
+                                    dots.forEach(dot => dot.classList.add('error'));
+                                    setTimeout(() => {
+                                        inputPass = "";
+                                        dots.forEach(dot => {
+                                            dot.classList.remove('filled', 'error');
+                                        });
+                                    }, 500);
+                                }
+                            }, 200);
+                        }
+                    }
                 }
             });
         }
