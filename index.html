@@ -101,52 +101,19 @@
         .stop-sign { background: linear-gradient(90deg, #ff9a44, #fc6076); padding: 8px 18px; border-radius: 30px; border: 2px solid #fff; color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 5px 15px rgba(252, 96, 118, 0.5); text-shadow: 0 1px 2px rgba(0,0,0,0.3); transform: rotate(-2deg); }
         #stop-1 { left: 15%; } #stop-2 { left: 30%; margin-top: 80px; } #stop-3 { left: 45%; } #stop-4 { left: 60%; margin-top: -60px; } #stop-5 { left: 75%; } #stop-6 { left: 90%; margin-top: 70px; }
 
-        /* 🌟🌟🌟 Page 5: 年度数据 (V5.4 最终完美版) 🌟🌟🌟 */
+        /* 🌟🌟🌟 Page 5: 年度数据 (V5.5 终极构图调整) 🌟🌟🌟 */
         .data-container-top {
-            position: absolute;
-            top: 8%; /* ⬆️ 最终上移至 8% */
-            left: 20px;
-            right: 20px;
-            z-index: 10;
+            position: absolute; top: 5%; left: 20px; right: 20px; z-index: 10;
             padding: 30px 20px;
-            /* 云雾柔光背景 */
             background: radial-gradient(closest-side, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0) 100%);
             backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
-            text-align: left;
-            /* 确保初始不可见，等待动画 */
-            opacity: 0; 
+            text-align: left; opacity: 0; 
         }
-        
-        .data-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            letter-spacing: 2px;
-            color: #1a1a1a;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8);
-        }
-
+        .data-title { font-size: 22px; font-weight: 600; margin-bottom: 20px; letter-spacing: 2px; color: #1a1a1a; text-shadow: 0 0 10px rgba(255,255,255,0.8); }
         .data-list { list-style: none; padding: 0; }
-        .data-list li {
-            margin-bottom: 18px;
-            display: flex; align-items: baseline; justify-content: flex-start;
-            color: #222; 
-            font-size: 16px; 
-            line-height: 1.6;
-            font-weight: 500; 
-            text-shadow: 0 0 8px rgba(255,255,255,0.9);
-        }
-        
+        .data-list li { margin-bottom: 15px; display: flex; align-items: baseline; justify-content: flex-start; color: #222; font-size: 14.5px; line-height: 1.6; font-weight: 500; text-shadow: 0 0 8px rgba(255,255,255,0.9); }
         .data-icon { margin-right: 12px; color: #d4a017; font-size: 14px; text-shadow: none; }
-        .data-highlight {
-            font-size: 28px;
-            font-weight: 800;
-            color: #d4a017;
-            margin: 0 6px;
-            font-family: "PingFang SC", sans-serif;
-            text-shadow: 1px 1px 0 #fff;
-        }
-
+        .data-highlight { font-size: 24px; font-weight: 800; color: #d4a017; margin: 0 6px; font-family: "PingFang SC", sans-serif; text-shadow: 1px 1px 0 #fff; }
 
         /* =========== Page 6: 终极告白页 =========== */
         .lock-screen-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 20; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
@@ -215,10 +182,10 @@
             </div>
 
             <div class="swiper-slide" id="password-slide">
-                <div class="bg-full" style="background-image: url('images/bg_letter.png');"></div>
+                <div class="bg-full" style="background-image: url('images/bg_letter.png'); background-size: 120%; background-position: center;"></div>
                 <div class="letter-content" id="letterText">
                     <div class="letter-group"><p>二岁老师，我有时不够浪漫，</p><p>有时词不达意，有时又缺少文艺气息。</p></div>
-                    <div class="letter-group"><p>我实在不知有什么不土的方式表达以下信息，</p><p>但我不能为了"避免土味的表达"而选择"不表达"，</p><p>现在我就想在2026年的太阳出来之前</p><p>大胆表达：</p></div>
+                    <div class="letter-group"><p>我实在不知有啥不土的方式表达以下信息，</p><p>但我不能为了“避免土味的表达”而选择"不表达"，</p><p>现在我就想在2026年的太阳出来之前</p><p>大胆表达：</p></div>
                     <div class="letter-group letter-highlight"><p>我喜欢你，请和我交往吧！</p></div>
                     <div class="letter-group"><p>2025虽然我们只赶上了一个尾巴，</p><p>但相处的非常愉快。</p></div>
                     <div class="letter-group"><p>2026，我想和你一起经历更多！</p></div>
