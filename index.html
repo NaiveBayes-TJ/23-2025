@@ -78,23 +78,13 @@
 
         /* Page 4: 星河旅途 */
         .journey-title { position: absolute; top: 10%; left: 28px; z-index: 10; color: #fff; font-size: 20px; font-weight: 300; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); opacity: 0; }
-        
-        /* 背景滚动容器 */
-        .journey-scroll-container { 
-            position: absolute; top: 0; left: 0; 
-            height: 100%; width: 300%; 
-            display: flex; align-items: center; 
-            transform: translateX(0); 
-            will-change: transform; 
-        }
+        .journey-scroll-container { position: absolute; top: 0; left: 0; height: 100%; width: 300%; display: flex; align-items: center; transform: translateX(0); will-change: transform; }
         .start-journey .journey-scroll-container { animation: scrollJourney 18s linear forwards; }
         @keyframes scrollJourney { 0% { transform: translateX(0); } 100% { transform: translateX(-66.66%); } }
-        
         .journey-path-svg { position: absolute; top: 50%; left: 5%; width: 90%; height: 300px; transform: translateY(-50%); z-index: 5; overflow: visible; opacity: 0.6; }
         .path-line { fill: none; stroke: url(#pathGradient); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 8px rgba(255, 223, 128, 0.8)); stroke-dasharray: 2000; stroke-dashoffset: 2000; }
         .start-journey .path-line { animation: drawPath 18s linear forwards; }
         @keyframes drawPath { to { stroke-dashoffset: 0; } }
-        
         .walkers-group { position: absolute; offset-path: path("M10,150 C150,50 300,250 450,150 S 750,50 900,150 S 1200,250 1350,150 S 1650,50 1800,150"); offset-distance: 0%; top: 50%; left: 5%; width: 60px; height: 60px; z-index: 15; transform: translateY(-50%) scale(0.8); }
         .start-journey .walkers-group { animation: walkAlongPath 18s linear forwards, walkerBounce 0.8s infinite alternate ease-in-out; }
         @keyframes walkAlongPath { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
@@ -102,11 +92,8 @@
         .walker-avatar { position: absolute; border-radius: 50%; box-shadow: 0 0 15px currentColor; filter: blur(1px); }
         .walker-1 { width: 30px; height: 30px; background: #f6d365; color: #f6d365; left: 0; top: 10px; }
         .walker-2 { width: 25px; height: 25px; background: #ff9a9e; color: #ff9a9e; right: 0; top: 0; animation-delay: 0.2s; }
-        
-        /* 固定GIF */
         .fixed-couple-container { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 140px; height: auto; z-index: 50; pointer-events: none; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); }
         .fixed-couple-container img { width: 100%; display: block; }
-        /* 站点 */
         .journey-stop { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; opacity: 0; transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .journey-stop.active { opacity: 1; transform: translateY(-65%); }
         .stop-photo { width: 140px; height: 160px; background: #fff; padding: 8px 8px 30px 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: rotate(3deg); margin-bottom: 15px; }
@@ -114,63 +101,85 @@
         .stop-sign { background: linear-gradient(90deg, #ff9a44, #fc6076); padding: 8px 18px; border-radius: 30px; border: 2px solid #fff; color: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 5px 15px rgba(252, 96, 118, 0.5); text-shadow: 0 1px 2px rgba(0,0,0,0.3); transform: rotate(-2deg); }
         #stop-1 { left: 15%; } #stop-2 { left: 30%; margin-top: 80px; } #stop-3 { left: 45%; } #stop-4 { left: 60%; margin-top: -60px; } #stop-5 { left: 75%; } #stop-6 { left: 90%; margin-top: 70px; }
 
-        /* Page 5: 年度数据 */
-        .data-container-top { position: absolute; top: 8%; left: 28px; right: 28px; z-index: 10; }
-        .data-container-bottom { position: absolute; top: 62%; left: 28px; right: 28px; z-index: 10; }
-        .data-title { font-size: 26px; font-weight: 600; margin-bottom: 25px; letter-spacing: 2px; color: #2c3e50; text-align: left; }
+        /* 🌟🌟🌟 Page 5: 年度数据 (V5.4 最终完美版) 🌟🌟🌟 */
+        .data-container-top {
+            position: absolute;
+            top: 8%; /* ⬆️ 最终上移至 8% */
+            left: 20px;
+            right: 20px;
+            z-index: 10;
+            padding: 30px 20px;
+            /* 云雾柔光背景 */
+            background: radial-gradient(closest-side, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.4) 60%, rgba(255,255,255,0) 100%);
+            backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+            text-align: left;
+            /* 确保初始不可见，等待动画 */
+            opacity: 0; 
+        }
+        
+        .data-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
         .data-list { list-style: none; padding: 0; }
-        .data-list li { margin-bottom: 15px; display: flex; align-items: baseline; justify-content: flex-start; color: #4a5568; font-size: 18px; line-height: 1.5; font-weight: 400; }
-        .data-icon { margin-right: 12px; color: #d4a017; font-size: 14px; }
-        .data-highlight { font-size: 34px; font-weight: 800; color: #d4a017; margin: 0 6px; font-family: "PingFang SC", sans-serif; text-shadow: none; }
-
-        /* =========== 🌟 Page 6: 密码锁 (Updated) 🌟 =========== */
+        .data-list li {
+            margin-bottom: 18px;
+            display: flex; align-items: baseline; justify-content: flex-start;
+            color: #222; 
+            font-size: 16px; 
+            line-height: 1.6;
+            font-weight: 500; 
+            text-shadow: 0 0 8px rgba(255,255,255,0.9);
+        }
         
-        /* 锁屏界面容器 */
-        .lock-screen-container {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 20; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-            /* 毛玻璃效果 */
-            background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-        }
-        .lock-screen-container.unlocked {
-            opacity: 0; transform: scale(1.1); pointer-events: none;
+        .data-icon { margin-right: 12px; color: #d4a017; font-size: 14px; text-shadow: none; }
+        .data-highlight {
+            font-size: 28px;
+            font-weight: 800;
+            color: #d4a017;
+            margin: 0 6px;
+            font-family: "PingFang SC", sans-serif;
+            text-shadow: 1px 1px 0 #fff;
         }
 
-        /* 提示字和圆点 */
-        .lock-header { text-align: center; margin-bottom: 40px; }
-        .lock-title { color: #fff; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; font-weight: 300; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+
+        /* =========== Page 6: 终极告白页 =========== */
+        .lock-screen-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 20; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .lock-screen-container.unlocked { opacity: 0; transform: scale(1.05); pointer-events: none; }
+        .lock-header { text-align: center; margin-bottom: 40px; transition: opacity 0.3s; }
+        .lock-title { color: #2c3e50; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; font-weight: 400; }
         .lock-dots { display: flex; justify-content: center; gap: 15px; }
-        .lock-dot { width: 12px; height: 12px; border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; transition: all 0.2s; }
-        .lock-dot.filled { background: #fff; border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        .lock-dot.error { border-color: #ff6b6b; background: rgba(255,107,107,0.3); animation: shake 0.4s ease-in-out; }
-
-        /* 9宫格键盘 */
-        .lock-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 280px; }
-        .pad-btn {
-            width: 70px; height: 70px; border-radius: 50%;
-            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
-            color: #fff; font-size: 28px; font-weight: 400;
-            display: flex; justify-content: center; align-items: center;
-            margin: 0 auto; cursor: pointer;
-            transition: background 0.1s;
-            -webkit-tap-highlight-color: transparent;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-        .pad-btn:active { background: rgba(255,255,255,0.35); }
+        .lock-dot { width: 12px; height: 12px; border: 1px solid #2c3e50; border-radius: 50%; transition: all 0.2s; }
+        .lock-dot.filled { background: #2c3e50; box-shadow: 0 0 5px rgba(44, 62, 80, 0.3); }
+        .lock-dot.error { border-color: #e74c3c; background: rgba(231, 76, 60, 0.3); animation: shake 0.4s ease-in-out; }
+        .lock-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 280px; transition: opacity 0.3s; }
+        .pad-btn { width: 70px; height: 70px; border-radius: 50%; background: rgba(44, 62, 80, 0.05); border: 1px solid rgba(44, 62, 80, 0.2); color: #2c3e50; font-size: 28px; font-weight: 400; display: flex; justify-content: center; align-items: center; margin: 0 auto; cursor: pointer; transition: background 0.1s; -webkit-tap-highlight-color: transparent; }
+        .pad-btn:active { background: rgba(44, 62, 80, 0.15); }
         .pad-btn.empty { border: none; background: transparent; pointer-events: none; }
-
         @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-10px);} 75%{transform:translateX(10px);} }
+        .lock-success-msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); color: #2c3e50; font-size: 34px; font-weight: 300; letter-spacing: 8px; opacity: 0; transition: all 0.5s ease; pointer-events: none; text-shadow: 0 2px 5px rgba(0,0,0,0.1); font-family: "Songti SC", serif; }
+        .lock-success-msg.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        #petal-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 25; overflow: hidden; }
+        .petal { position: absolute; top: -20px; width: 20px; height: 20px; background: #ffd1dc; border-radius: 150% 0 150% 0; opacity: 0; z-index: 25; box-shadow: 0 2px 5px rgba(0,0,0,0.05); animation: fallingPetal linear forwards; }
+        @keyframes fallingPetal { 0% { transform: translate(0, 0) rotate(0deg); opacity: 0.9; } 100% { transform: translate(100px, 110vh) rotate(360deg); opacity: 0; } }
 
-        /* 解锁后的真实内容容器 (等待填充) */
-        .unlocked-content {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10; opacity: 0; transition: opacity 1s ease 0.8s;
-            display: flex; justify-content: center; align-items: center;
+        .letter-content {
+            position: absolute; top: 48%; left: 50%; transform: translate(-50%, -50%);
+            width: 88%; text-align: left;
+            font-family: "STSong", "Songti SC", "Noto Serif SC", "SimSun", "Times New Roman", serif;
+            color: #2c3e50; font-size: 14.5px; line-height: 1.8; letter-spacing: 1px;
+            opacity: 0; transition: opacity 1.5s ease 0.5s, transform 1.5s ease 0.5s;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-        .unlocked-content.show { opacity: 1; }
-        
-        .placeholder-text { color: #333; font-size: 20px; font-weight: 300; letter-spacing: 2px; }
+        .letter-content.show { opacity: 1; transform: translate(-50%, -50%); }
+        .letter-group { margin-bottom: 22px; }
+        .letter-content p { margin: 4px 0; padding: 0; text-indent: 0; word-break: normal; }
+        .letter-highlight p { font-weight: 700; font-size: 20px; color: #2c3e50; text-align: center; margin: 30px 0; letter-spacing: 2px; }
 
     </style>
 </head>
@@ -184,85 +193,20 @@
 
     <div class="swiper swiper-v" id="main-swiper">
         <div class="swiper-wrapper">
+            <div class="swiper-slide"><div class="bg-full" style="background-image: url('https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?q=80&w=1000&auto=format&fit=crop'); filter: brightness(0.65);"></div><div class="cinematic-shade-top"></div><div class="story-content-top-left"><p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 0.5s">2025年，你在她说上一共遇见了</p><div class="highlight-text animate__animated animate__fadeIn animate__slower" style="animation-delay: 1.5s">鬼知道多少人</div><p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 2.8s; margin-top: 25px;">但是在11月10日，你和</p><div class="highlight-text animate__animated animate__fadeIn animate__slower" style="animation-delay: 3.8s">天真的贝叶斯</div><p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 4.8s">匹配上了。</p></div><div class="popup-image-container animate__animated animate__fadeInUp animate__slower" style="animation-delay: 7.2s"><div class="popup-image-contontent"><img src="images/profile_screenshot.jpg" alt="资料截图"></div></div><div class="arrow-up-hint" style="animation-delay: 8s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div></div>
+            <div class="swiper-slide"><div class="bg-full heatmap-bg animate__animated animate__fadeIn animate__slowest" style="animation-delay: 1.8s; background-image: url('images/bg_heatmap.png');"></div><div class="topic-intro-left animate__animated animate__fadeInDown" style="animation-delay: 0.5s">期间，<span class="topic-highlight">你们聊的话题包括：</span></div><div class="topic-question-right animate__animated animate__fadeInUp" style="animation-delay: 3s"><span class="question-text">你觉得这个小伙子有趣吗？</span></div><div class="arrow-up-hint" style="animation-delay: 4s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div></div>
+            <div class="swiper-slide" id="metro-slide"><div class="bg-full" style="background-image: url('images/bg_metro_text.jpg');"></div><div class="bg-full top-layer" id="metroTopLayer" style="background-image: url('images/bg_metro.jpg');"></div><div id="fireworks-container"></div><div class="cinematic-shade-bottom"></div><div class="swipe-capsule-hint" id="metroHint">左滑开启</div><div class="reveal-text-container" id="metroRevealBox"></div><div class="arrow-up-hint"><div class="arrow-icon-up"></div></div></div>
+            <div class="swiper-slide"><div class="bg-full" style="background-image: url('images/photo_midnight.jpg'); filter: brightness(0.6);"></div><div class="shade-top"></div><div class="shade-bottom"></div><div class="firefly-container"><div class="firefly"></div><div class="firefly"></div><div class="firefly"></div><div class="firefly"></div></div><div class="midnight-text-left animate__animated animate__fadeInDown animate__slower" style="animation-delay: 0.5s"><div class="midnight-date">12月7日</div><div class="midnight-fact">他在你家待到了<br><span class="midnight-highlight">凌晨 1:19</span> 才走。</div></div><div class="midnight-text-right animate__animated animate__fadeInRight animate__slower" style="animation-delay: 2.0s"><div class="midnight-thought">此时的他还不知道，<br>以后会经常和你玩到这么晚。</div></div><div class="arrow-up-hint" style="animation-delay: 4s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div></div>
+            <div class="swiper-slide" id="journey-slide" style="background: #0a0a1a;"><div class="journey-scroll-container"><div class="bg-full" style="background-image: url('https://images.unsplash.com/photo-1536704689578-8028456c3513?q=80&w=1000&auto=format&fit=crop'); filter: brightness(0.6);"></div><svg class="journey-path-svg" viewBox="0 0 1800 300" preserveAspectRatio="none"><defs><linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f6d365;stop-opacity:0" /><stop offset="20%" style="stop-color:#f6d365;stop-opacity:1" /><stop offset="80%" style="stop-color:#ff9a9e;stop-opacity:1" /><stop offset="100%" style="stop-color:#ff9a9e;stop-opacity:0" /></linearGradient></defs><path class="path-line" d="M10,150 C150,50 300,250 450,150 S 750,50 900,150 S 1200,250 1350,150 S 1650,50 1800,150" /></svg><div class="walkers-group"><div class="walker-avatar walker-1"></div><div class="walker-avatar walker-2"></div></div><div class="journey-stop" id="stop-1" data-time="2500"><div class="stop-photo"><img src="images/loc_minhang.jpg" alt="闵行文化公园"></div><div class="stop-sign">闵行文化公园</div></div><div class="journey-stop" id="stop-2" data-time="5000"><div class="stop-photo"><img src="images/loc_laoshifu.jpg" alt="上海老市府"></div><div class="stop-sign" style="background: linear-gradient(90deg, #4facfe, #00f2fe);">上海老市府</div></div><div class="journey-stop" id="stop-3" data-time="7500"><div class="stop-photo"><img src="images/loc_jiaoda.jpg" alt="交大校园"></div><div class="stop-sign" style="background: linear-gradient(90deg, #43e97b, #38f9d7);">交大校园</div></div><div class="journey-stop" id="stop-4" data-time="10000"><div class="stop-photo"><img src="images/loc_game.jpg" alt="游戏博物馆"></div><div class="stop-sign" style="background: linear-gradient(90deg, #fa709a, #fee140);">游戏博物馆</div></div><div class="journey-stop" id="stop-5" data-time="12500"><div class="stop-photo"><img src="images/loc_mihoyo.jpg" alt="米哈游园区"></div><div class="stop-sign" style="background: linear-gradient(90deg, #a18cd1, #fbc2eb);">米哈游园区</div></div><div class="journey-stop" id="stop-6" data-time="15000"><div class="stop-photo"><img src="images/loc_xintiandi.jpg" alt="新天地"></div><div class="stop-sign">新天地</div></div></div><div class="cinematic-shade-top"></div><div class="journey-title animate__animated animate__fadeInDown" style="animation-delay: 0.5s">今年，你们的足迹遍布：</div><div class="fixed-couple-container"><img src="images/walking_couple.gif" alt="手牵手行走"></div></div>
             
             <div class="swiper-slide">
-                <div class="bg-full" style="background-image: url('https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?q=80&w=1000&auto=format&fit=crop'); filter: brightness(0.65);"></div>
-                <div class="cinematic-shade-top"></div>
-                <div class="story-content-top-left">
-                    <p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 0.5s">2025年，你在她说上一共遇见了</p>
-                    <div class="highlight-text animate__animated animate__fadeIn animate__slower" style="animation-delay: 1.5s">鬼知道多少人</div>
-                    <p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 2.8s; margin-top: 25px;">但是在11月10日，你和</p>
-                    <div class="highlight-text animate__animated animate__fadeIn animate__slower" style="animation-delay: 3.8s">天真的贝叶斯</div>
-                    <p class="story-text-normal animate__animated animate__fadeIn animate__slower" style="animation-delay: 4.8s">匹配上了。</p>
-                </div>
-                <div class="popup-image-container animate__animated animate__fadeInUp animate__slower" style="animation-delay: 7.2s"><div class="popup-image-contontent"><img src="images/profile_screenshot.jpg" alt="资料截图"></div></div>
-                <div class="arrow-up-hint" style="animation-delay: 8s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="bg-full heatmap-bg animate__animated animate__fadeIn animate__slowest" style="animation-delay: 1.8s; background-image: url('images/bg_heatmap.png');"></div>
-                <div class="topic-intro-left animate__animated animate__fadeInDown" style="animation-delay: 0.5s">期间，<span class="topic-highlight">你们聊的话题包括：</span></div>
-                <div class="topic-question-right animate__animated animate__fadeInUp" style="animation-delay: 3s"><span class="question-text">你觉得这个小伙子有趣吗？</span></div>
-                <div class="arrow-up-hint" style="animation-delay: 4s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div>
-            </div>
-
-            <div class="swiper-slide" id="metro-slide">
-                <div class="bg-full" style="background-image: url('images/bg_metro_text.jpg');"></div>
-                <div class="bg-full top-layer" id="metroTopLayer" style="background-image: url('images/bg_metro.jpg');"></div>
-                <div id="fireworks-container"></div>
-                <div class="cinematic-shade-bottom"></div>
-                <div class="swipe-capsule-hint" id="metroHint">左滑开启</div>
-                <div class="reveal-text-container" id="metroRevealBox"></div>
-                <div class="arrow-up-hint"><div class="arrow-icon-up"></div></div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="bg-full" style="background-image: url('images/photo_midnight.jpg'); filter: brightness(0.6);"></div>
-                <div class="shade-top"></div>
-                <div class="shade-bottom"></div>
-                <div class="firefly-container"><div class="firefly"></div><div class="firefly"></div><div class="firefly"></div><div class="firefly"></div></div>
-                <div class="midnight-text-left animate__animated animate__fadeInDown animate__slower" style="animation-delay: 0.5s">
-                    <div class="midnight-date">12月7日</div>
-                    <div class="midnight-fact">他在你家待到了<br><span class="midnight-highlight">凌晨 1:19</span> 才走。</div>
-                </div>
-                <div class="midnight-text-right animate__animated animate__fadeInRight animate__slower" style="animation-delay: 2.0s">
-                    <div class="midnight-thought">此时的他还不知道，<br>以后会经常和你玩到这么晚。</div>
-                </div>
-                <div class="arrow-up-hint" style="animation-delay: 4s; opacity: 0;" class="animate__animated animate__fadeIn"><div class="arrow-icon-up"></div></div>
-            </div>
-
-            <div class="swiper-slide" id="journey-slide" style="background: #0a0a1a;">
-                <div class="journey-scroll-container">
-                    <div class="bg-full" style="background-image: url('https://images.unsplash.com/photo-1536704689578-8028456c3513?q=80&w=1000&auto=format&fit=crop'); filter: brightness(0.6);"></div>
-                    <svg class="journey-path-svg" viewBox="0 0 1800 300" preserveAspectRatio="none">
-                        <defs><linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f6d365;stop-opacity:0" /><stop offset="20%" style="stop-color:#f6d365;stop-opacity:1" /><stop offset="80%" style="stop-color:#ff9a9e;stop-opacity:1" /><stop offset="100%" style="stop-color:#ff9a9e;stop-opacity:0" /></linearGradient></defs>
-                        <path class="path-line" d="M10,150 C150,50 300,250 450,150 S 750,50 900,150 S 1200,250 1350,150 S 1650,50 1800,150" />
-                    </svg>
-                    <div class="walkers-group"><div class="walker-avatar walker-1"></div><div class="walker-avatar walker-2"></div></div>
-                    <div class="journey-stop" id="stop-1" data-time="2500"><div class="stop-photo"><img src="images/loc_minhang.jpg" alt="闵行文化公园"></div><div class="stop-sign">闵行文化公园</div></div>
-                    <div class="journey-stop" id="stop-2" data-time="5000"><div class="stop-photo"><img src="images/loc_laoshifu.jpg" alt="上海老市府"></div><div class="stop-sign" style="background: linear-gradient(90deg, #4facfe, #00f2fe);">上海老市府</div></div>
-                    <div class="journey-stop" id="stop-3" data-time="7500"><div class="stop-photo"><img src="images/loc_jiaoda.jpg" alt="交大校园"></div><div class="stop-sign" style="background: linear-gradient(90deg, #43e97b, #38f9d7);">交大校园</div></div>
-                    <div class="journey-stop" id="stop-4" data-time="10000"><div class="stop-photo"><img src="images/loc_game.jpg" alt="游戏博物馆"></div><div class="stop-sign" style="background: linear-gradient(90deg, #fa709a, #fee140);">游戏博物馆</div></div>
-                    <div class="journey-stop" id="stop-5" data-time="12500"><div class="stop-photo"><img src="images/loc_mihoyo.jpg" alt="米哈游园区"></div><div class="stop-sign" style="background: linear-gradient(90deg, #a18cd1, #fbc2eb);">米哈游园区</div></div>
-                    <div class="journey-stop" id="stop-6" data-time="15000"><div class="stop-photo"><img src="images/loc_xintiandi.jpg" alt="新天地"></div><div class="stop-sign">新天地</div></div>
-                </div>
-                <div class="cinematic-shade-top"></div>
-                <div class="journey-title animate__animated animate__fadeInDown" style="animation-delay: 0.5s">今年，你们的足迹遍布：</div>
-                <div class="fixed-couple-container"><img src="images/walking_couple.gif" alt="手牵手行走"></div>
-            </div>
-
-            <div class="swiper-slide">
                 <div class="bg-full animate__animated animate__fadeIn animate__slower" style="background-image: url('images/image_18.png');"></div>
-                <div class="data-container-top">
+                <div class="data-container-top animate__animated animate__fadeIn animate__slower" style="animation-delay: 0.5s;">
                     <div class="data-title animate__animated animate__fadeInDown" style="animation-delay: 0.8s;">今年，你们：</div>
                     <ul class="data-list">
                         <li class="animate__animated animate__fadeInUp" style="animation-delay: 1.2s;"><span class="data-icon">●</span><span>一共联机玩了<span class="data-highlight">5</span>款游戏</span></li>
-                        <li class="animate__animated animate__fadeInUp" style="animation-delay: 1.5s;"><span class="data-icon">●</span><span>最远相距<span class="data-highlight">2240</span>公里</span></li>
+                        <li class="animate__animated animate__fadeInUp" style="animation-delay: 1.5s;"><span class="data-icon">●</span><span>最远相距<span class="data-highlight">2240</span>公里（大致）</span></li>
                         <li class="animate__animated animate__fadeInUp" style="animation-delay: 1.8s;"><span class="data-icon">●</span><span>2人一共感冒<span class="data-highlight">3</span>次</span></li>
-                    </ul>
-                </div>
-                <div class="data-container-bottom">
-                    <ul class="data-list">
                         <li class="animate__animated animate__fadeInUp" style="animation-delay: 2.1s;"><span class="data-icon">●</span><span>Tj为23交付了<span class="data-highlight">190</span>行代码</span></li>
                         <li class="animate__animated animate__fadeInUp" style="animation-delay: 2.4s;"><span class="data-icon">●</span><span>23为Tj写下<span class="data-highlight">27</span>个字</span></li>
                     </ul>
@@ -272,26 +216,19 @@
 
             <div class="swiper-slide" id="password-slide">
                 <div class="bg-full" style="background-image: url('images/bg_letter.png');"></div>
-                
-                <div class="unlocked-content" id="unlockedContent">
-                    <div class="placeholder-text">此处展示解锁后的真正内容</div>
+                <div class="letter-content" id="letterText">
+                    <div class="letter-group"><p>二岁老师，我有时不够浪漫，</p><p>有时词不达意，有时又缺少文艺气息。</p></div>
+                    <div class="letter-group"><p>我实在不知有什么不土的方式表达以下信息，</p><p>但我不能为了"避免土味的表达"而选择"不表达"，</p><p>现在我就想在2026年的太阳出来之前</p><p>大胆表达：</p></div>
+                    <div class="letter-group letter-highlight"><p>我喜欢你，请和我交往吧！</p></div>
+                    <div class="letter-group"><p>2025虽然我们只赶上了一个尾巴，</p><p>但相处的非常愉快。</p></div>
+                    <div class="letter-group"><p>2026，我想和你一起经历更多！</p></div>
                 </div>
-
                 <div class="lock-screen-container" id="lockScreen">
-                    <div class="lock-header">
-                        <div class="lock-title">请输入解锁密码</div>
-                        <div class="lock-dots">
-                            <div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div>
-                            <div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div>
-                        </div>
-                    </div>
-                    <div class="lock-pad" id="keypad">
-                        <div class="pad-btn" data-num="1">1</div><div class="pad-btn" data-num="2">2</div><div class="pad-btn" data-num="3">3</div>
-                        <div class="pad-btn" data-num="4">4</div><div class="pad-btn" data-num="5">5</div><div class="pad-btn" data-num="6">6</div>
-                        <div class="pad-btn" data-num="7">7</div><div class="pad-btn" data-num="8">8</div><div class="pad-btn" data-num="9">9</div>
-                        <div class="pad-btn empty"></div><div class="pad-btn" data-num="0">0</div><div class="pad-btn empty"></div>
-                    </div>
+                    <div class="lock-success-msg" id="lockSuccessMsg">门已开锁</div>
+                    <div class="lock-header"><div class="lock-title">以下内容请输入密码查看</div><div class="lock-dots"><div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div><div class="lock-dot"></div></div></div>
+                    <div class="lock-pad" id="keypad"><div class="pad-btn" data-num="1">1</div><div class="pad-btn" data-num="2">2</div><div class="pad-btn" data-num="3">3</div><div class="pad-btn" data-num="4">4</div><div class="pad-btn" data-num="5">5</div><div class="pad-btn" data-num="6">6</div><div class="pad-btn" data-num="7">7</div><div class="pad-btn" data-num="8">8</div><div class="pad-btn" data-num="9">9</div><div class="pad-btn empty"></div><div class="pad-btn" data-num="0">0</div><div class="pad-btn empty"></div></div>
                 </div>
+                <div id="petal-container"></div>
             </div>
 
         </div>
@@ -299,101 +236,23 @@
 
     <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
     <script>
-        // --- 1. 加载页逻辑 ---
-        window.onload = function() {
-            let percent = 0; const numEl = document.getElementById('loading-num'); const screenEl = document.getElementById('loading-screen'); const swiperEl = document.getElementById('main-swiper');
-            const timer = setInterval(() => {
-                percent += Math.floor(Math.random() * 5) + 1; if (percent > 100) percent = 100; numEl.innerText = percent + '%';
-                if (percent === 100) {
-                    clearInterval(timer);
-                    setTimeout(() => {
-                        screenEl.classList.add('fade-out'); swiperEl.classList.add('content-visible');
-                        setTimeout(() => { if(mySwiper) swiperAnimate(mySwiper); }, 500);
-                        setTimeout(() => { screenEl.style.display = 'none'; }, 1600);
-                    }, 500);
-                }
-            }, 40);
-        };
-
-        // --- 2. Swiper 初始化 (包含自动跳转修复!) ---
-        var mySwiper = new Swiper('.swiper-v', {
-            direction: 'vertical', speed: 1000, mousewheel: true, effect: 'fade', fadeEffect: { crossFade: true }, touchStartPreventDefault: false,
-            // 删除了 noSwipingSelector，现在允许手动滑动了
-            on: {
-                slideChangeTransitionEnd: function () { 
-                    swiperAnimate(this);
-                    
-                    // 美罗城重置
-                    if (this.activeIndex !== 2) {
-                         setTimeout(() => { 
-                            const topLayer = document.getElementById('metroTopLayer'); const hint = document.getElementById('metroHint'); const revealBox = document.getElementById('metroRevealBox'); 
-                            if(topLayer) topLayer.classList.remove('do-fade'); 
-                            if(hint) hint.style.display = 'flex'; 
-                            if(revealBox) { revealBox.classList.remove('show'); setTimeout(() => { revealBox.innerHTML = ''; }, 500); } 
-                            document.getElementById('fireworks-container').innerHTML = ''; 
-                        }, 500);
-                    }
-
-                    // 星河旅途动画 (Index 4)
-                    const journeySlide = document.getElementById('journey-slide');
-                    if (journeySlide) {
-                        const stops = journeySlide.querySelectorAll('.journey-stop');
-                        if (this.activeIndex === 4) {
-                            journeySlide.classList.add('start-journey');
-                            stops.forEach(stop => {
-                                const delayTime = parseInt(stop.getAttribute('data-time'));
-                                setTimeout(() => { stop.classList.add('active'); }, delayTime);
-                            });
-
-                            // 🌟 核心修复：18.5秒后自动跳转到下一页 🌟
-                            setTimeout(() => {
-                                // 只有当用户还停留在这一页时才自动跳，避免用户已经手动滑走了
-                                if(this.activeIndex === 4) {
-                                    this.slideNext();
-                                }
-                            }, 18500);
-
-                        } else {
-                            journeySlide.classList.remove('start-journey');
-                            stops.forEach(stop => { stop.classList.remove('active'); });
-                        }
-                    }
-                },
-            }
-        });
-
-        // 动画函数
-        function swiperAnimate(swiper) {
-            const slides = swiper.slides;
-            for (let i = 0; i < slides.length; i++) {
-                const slide = slides[i];
-                const allAnimated = slide.querySelectorAll('.animate__animated');
-                allAnimated.forEach(el => { el.classList.remove(el.getAttribute('data-ani')); el.style.opacity = '0'; el.style.animationName = 'none'; });
-            }
-            const currentSlide = swiper.slides[swiper.activeIndex];
-            const currentAnimated = currentSlide.querySelectorAll('.animate__animated');
-            currentAnimated.forEach(el => {
-                void el.offsetWidth; 
-                el.style.opacity = '1';
-                el.style.animationName = ''; 
-                if(el.getAttribute('data-ani')) el.classList.add(el.getAttribute('data-ani'));
-            });
-        }
-
-        // --- 3. 交互逻辑 ---
+        window.onload = function() { let percent = 0; const numEl = document.getElementById('loading-num'); const screenEl = document.getElementById('loading-screen'); const swiperEl = document.getElementById('main-swiper'); const timer = setInterval(() => { percent += Math.floor(Math.random() * 5) + 1; if (percent > 100) percent = 100; numEl.innerText = percent + '%'; if (percent === 100) { clearInterval(timer); setTimeout(() => { screenEl.classList.add('fade-out'); swiperEl.classList.add('content-visible'); setTimeout(() => { if(mySwiper) swiperAnimate(mySwiper); }, 500); setTimeout(() => { screenEl.style.display = 'none'; }, 1600); }, 500); } }, 40); };
+        var mySwiper = new Swiper('.swiper-v', { direction: 'vertical', speed: 1000, mousewheel: true, effect: 'fade', fadeEffect: { crossFade: true }, touchStartPreventDefault: false, on: { slideChangeTransitionEnd: function () { swiperAnimate(this); if (this.activeIndex !== 2) { setTimeout(() => { const topLayer = document.getElementById('metroTopLayer'); const hint = document.getElementById('metroHint'); const revealBox = document.getElementById('metroRevealBox'); if(topLayer) topLayer.classList.remove('do-fade'); if(hint) hint.style.display = 'flex'; if(revealBox) { revealBox.classList.remove('show'); setTimeout(() => { revealBox.innerHTML = ''; }, 500); } document.getElementById('fireworks-container').innerHTML = ''; }, 500); } const journeySlide = document.getElementById('journey-slide'); if (journeySlide) { const stops = journeySlide.querySelectorAll('.journey-stop'); if (this.activeIndex === 4) { journeySlide.classList.add('start-journey'); stops.forEach(stop => { const delayTime = parseInt(stop.getAttribute('data-time')); setTimeout(() => { stop.classList.add('active'); }, delayTime); }); setTimeout(() => { if(this.activeIndex === 4) { this.slideNext(); } }, 18500); } else { journeySlide.classList.remove('start-journey'); stops.forEach(stop => { stop.classList.remove('active'); }); } } }, } });
+        function swiperAnimate(swiper) { const slides = swiper.slides; for (let i = 0; i < slides.length; i++) { const slide = slides[i]; const allAnimated = slide.querySelectorAll('.animate__animated'); allAnimated.forEach(el => { el.classList.remove(el.getAttribute('data-ani')); el.style.opacity = '0'; el.style.animationName = 'none'; }); } const currentSlide = swiper.slides[swiper.activeIndex]; const currentAnimated = currentSlide.querySelectorAll('.animate__animated'); currentAnimated.forEach(el => { void el.offsetWidth; el.style.opacity = '1'; el.style.animationName = ''; if(el.getAttribute('data-ani')) el.classList.add(el.getAttribute('data-ani')); }); }
         function launchWatercolorFireworks() { const container = document.getElementById('fireworks-container'); if(!container) return; const centerX = window.innerWidth / 2; const centerY = window.innerHeight * 0.35; for (let w = 0; w < 5; w++) { setTimeout(() => { for (let i = 0; i < 60; i++) { createParticle(container, centerX, centerY); } }, w * 250); } }
         function createParticle(container, x, y) { const particle = document.createElement('div'); particle.classList.add('watercolor-particle'); container.appendChild(particle); const size = Math.random() * 30 + 10 + 'px'; particle.style.width = size; particle.style.height = size; const hues = [45, 35, 330, 25]; const hue = hues[Math.floor(Math.random() * hues.length)]; particle.style.background = `radial-gradient(circle, hsla(${hue}, 100%, 70%, 1) 0%, hsla(${hue}, 100%, 60%, 0) 70%)`; particle.style.left = x + 'px'; particle.style.top = y + 'px'; const angle = Math.random() * Math.PI * 2; const distance = Math.random() * 250 + 80; const destX = x + Math.cos(angle) * distance; const destY = y + Math.sin(angle) * distance; const duration = Math.random() * 1.5 + 1.5 + 's'; setTimeout(() => { particle.style.transition = `all ${duration} cubic-bezier(0.25, 0.46, 0.45, 0.94)`; particle.style.transform = `translate(${destX - x}px, ${destY - y}px) scale(${Math.random() * 2 + 1})`; particle.style.opacity = '0.9'; setTimeout(() => { particle.style.opacity = '0'; }, parseFloat(duration) * 1000 * 0.7); }, 50); setTimeout(() => { particle.remove(); }, 3500); }
-        
         const metroSlide = document.getElementById('metro-slide'); const metroTopLayer = document.getElementById('metroTopLayer'); const metroHint = document.getElementById('metroHint'); const metroRevealBox = document.getElementById('metroRevealBox'); let touchStartX = 0; let touchStartY = 0; let isRevealed = false;
         if (metroSlide && metroTopLayer) { metroSlide.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; }, {passive: true}); metroSlide.addEventListener('touchend', function(e) { if (isRevealed) return; let touchEndX = e.changedTouches[0].screenX; let touchEndY = e.changedTouches[0].screenY; let diffX = touchStartX - touchEndX; let diffY = Math.abs(touchStartY - touchEndY); if (diffX > 50 && diffX > diffY * 1.5) { metroTopLayer.classList.add('do-fade'); if(metroHint) metroHint.style.display = 'none'; launchWatercolorFireworks(); if(metroRevealBox) { metroRevealBox.innerHTML = '<p class="single-reveal-text">11月21日，你与他第一次线下见面，<br>是否符合你想象中的样子？</p>'; metroRevealBox.classList.add('show'); } isRevealed = true; } }, {passive: true}); }
 
-        // --- 4. 密码锁逻辑 (固定密码 147369) ---
         const correctPass = "147369";
         let inputPass = "";
         const dots = document.querySelectorAll('.lock-dot');
         const lockScreen = document.getElementById('lockScreen');
-        const unlockedContent = document.getElementById('unlockedContent');
+        const letterText = document.getElementById('letterText');
         const keypad = document.getElementById('keypad');
+        const lockHeader = document.querySelector('.lock-header');
+        const successMsg = document.getElementById('lockSuccessMsg');
+        const petalContainer = document.getElementById('petal-container');
 
         if(keypad) {
             keypad.addEventListener('click', function(e) {
@@ -403,20 +262,15 @@
                         inputPass += num;
                         dots[inputPass.length - 1].classList.add('filled');
                         if(inputPass.length === 6) {
-                            setTimeout(() => {
-                                if(inputPass === correctPass) {
-                                    lockScreen.classList.add('unlocked');
-                                    unlockedContent.classList.add('show');
-                                } else {
-                                    dots.forEach(dot => dot.classList.add('error'));
-                                    setTimeout(() => {
-                                        inputPass = "";
-                                        dots.forEach(dot => {
-                                            dot.classList.remove('filled', 'error');
-                                        });
-                                    }, 500);
-                                }
-                            }, 200);
+                            if(inputPass === correctPass) {
+                                lockHeader.style.opacity = 0; keypad.style.opacity = 0;
+                                successMsg.classList.add('show');
+                                for(let i=0; i<25; i++) { setTimeout(() => { const petal = document.createElement('div'); petal.classList.add('petal'); petal.style.left = Math.random() * 90 + 5 + '%'; const scale = Math.random() * 0.5 + 0.8; petal.style.transform = `scale(${scale})`; petal.style.animationDuration = (Math.random() * 2 + 2.5) + 's'; petal.style.backgroundColor = ['#ffd1dc', '#ffb7c5', '#ffc0cb'][Math.floor(Math.random()*3)]; petalContainer.appendChild(petal); setTimeout(() => petal.remove(), 5000); }, i * 150); }
+                                setTimeout(() => { lockScreen.classList.add('unlocked'); letterText.classList.add('show'); }, 2800);
+                            } else {
+                                dots.forEach(dot => dot.classList.add('error'));
+                                setTimeout(() => { inputPass = ""; dots.forEach(dot => { dot.classList.remove('filled', 'error'); }); }, 500);
+                            }
                         }
                     }
                 }
