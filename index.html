@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>2025年度报告</title>
+    <title>她说App - 2025年度社交报告</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
     
@@ -78,14 +78,23 @@
 
         /* Page 4: 星河旅途 */
         .journey-title { position: absolute; top: 10%; left: 28px; z-index: 10; color: #fff; font-size: 20px; font-weight: 300; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); opacity: 0; }
-        .journey-scroll-container { position: absolute; top: 0; left: 0; height: 100%; width: 300%; display: flex; align-items: center; transform: translateX(0); will-change: transform; }
+        
+        /* 背景滚动容器 */
+        .journey-scroll-container { 
+            position: absolute; top: 0; left: 0; 
+            height: 100%; width: 300%; 
+            display: flex; align-items: center; 
+            transform: translateX(0); 
+            will-change: transform; 
+        }
         .start-journey .journey-scroll-container { animation: scrollJourney 18s linear forwards; }
         @keyframes scrollJourney { 0% { transform: translateX(0); } 100% { transform: translateX(-66.66%); } }
+        
         .journey-path-svg { position: absolute; top: 50%; left: 5%; width: 90%; height: 300px; transform: translateY(-50%); z-index: 5; overflow: visible; opacity: 0.6; }
         .path-line { fill: none; stroke: url(#pathGradient); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 8px rgba(255, 223, 128, 0.8)); stroke-dasharray: 2000; stroke-dashoffset: 2000; }
         .start-journey .path-line { animation: drawPath 18s linear forwards; }
         @keyframes drawPath { to { stroke-dashoffset: 0; } }
-        /* 路径小人装饰 */
+        
         .walkers-group { position: absolute; offset-path: path("M10,150 C150,50 300,250 450,150 S 750,50 900,150 S 1200,250 1350,150 S 1650,50 1800,150"); offset-distance: 0%; top: 50%; left: 5%; width: 60px; height: 60px; z-index: 15; transform: translateY(-50%) scale(0.8); }
         .start-journey .walkers-group { animation: walkAlongPath 18s linear forwards, walkerBounce 0.8s infinite alternate ease-in-out; }
         @keyframes walkAlongPath { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
@@ -93,6 +102,7 @@
         .walker-avatar { position: absolute; border-radius: 50%; box-shadow: 0 0 15px currentColor; filter: blur(1px); }
         .walker-1 { width: 30px; height: 30px; background: #f6d365; color: #f6d365; left: 0; top: 10px; }
         .walker-2 { width: 25px; height: 25px; background: #ff9a9e; color: #ff9a9e; right: 0; top: 0; animation-delay: 0.2s; }
+        
         /* 固定GIF */
         .fixed-couple-container { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 140px; height: auto; z-index: 50; pointer-events: none; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); }
         .fixed-couple-container img { width: 100%; display: block; }
@@ -113,14 +123,15 @@
         .data-icon { margin-right: 12px; color: #d4a017; font-size: 14px; }
         .data-highlight { font-size: 34px; font-weight: 800; color: #d4a017; margin: 0 6px; font-family: "PingFang SC", sans-serif; text-shadow: none; }
 
-        /* =========== 🌟 Page 6: 密码锁 (NEW!) 🌟 =========== */
+        /* =========== 🌟 Page 6: 密码锁 (Updated) 🌟 =========== */
         
         /* 锁屏界面容器 */
         .lock-screen-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 20; transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-            background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            /* 毛玻璃效果 */
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         }
         .lock-screen-container.unlocked {
             opacity: 0; transform: scale(1.1); pointer-events: none;
@@ -128,9 +139,9 @@
 
         /* 提示字和圆点 */
         .lock-header { text-align: center; margin-bottom: 40px; }
-        .lock-title { color: #fff; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; font-weight: 300; }
+        .lock-title { color: #fff; font-size: 18px; letter-spacing: 2px; margin-bottom: 20px; font-weight: 300; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
         .lock-dots { display: flex; justify-content: center; gap: 15px; }
-        .lock-dot { width: 12px; height: 12px; border: 1px solid rgba(255,255,255,0.5); border-radius: 50%; transition: all 0.2s; }
+        .lock-dot { width: 12px; height: 12px; border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; transition: all 0.2s; }
         .lock-dot.filled { background: #fff; border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
         .lock-dot.error { border-color: #ff6b6b; background: rgba(255,107,107,0.3); animation: shake 0.4s ease-in-out; }
 
@@ -138,29 +149,28 @@
         .lock-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; width: 280px; }
         .pad-btn {
             width: 70px; height: 70px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
             color: #fff; font-size: 28px; font-weight: 400;
             display: flex; justify-content: center; align-items: center;
             margin: 0 auto; cursor: pointer;
             transition: background 0.1s;
             -webkit-tap-highlight-color: transparent;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
-        .pad-btn:active { background: rgba(255,255,255,0.3); }
-        .pad-btn.empty { border: none; background: transparent; pointer-events: none; } /* 空位 */
+        .pad-btn:active { background: rgba(255,255,255,0.35); }
+        .pad-btn.empty { border: none; background: transparent; pointer-events: none; }
 
         @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-10px);} 75%{transform:translateX(10px);} }
 
-        /* 解锁后的真实内容容器 (等待你填充) */
+        /* 解锁后的真实内容容器 (等待填充) */
         .unlocked-content {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 10; opacity: 0; transition: opacity 1s ease 0.8s;
             display: flex; justify-content: center; align-items: center;
-            /* 只是个临时的居中样式 */
         }
         .unlocked-content.show { opacity: 1; }
         
-        /* 临时占位文字样式 */
-        .placeholder-text { color: #fff; font-size: 20px; font-weight: 300; letter-spacing: 2px; }
+        .placeholder-text { color: #333; font-size: 20px; font-weight: 300; letter-spacing: 2px; }
 
     </style>
 </head>
@@ -261,7 +271,7 @@
             </div>
 
             <div class="swiper-slide" id="password-slide">
-                <div class="bg-full" style="background-image: url('images/photo_midnight.jpg'); filter: blur(20px) brightness(0.4);"></div>
+                <div class="bg-full" style="background-image: url('images/bg_letter.png');"></div>
                 
                 <div class="unlocked-content" id="unlockedContent">
                     <div class="placeholder-text">此处展示解锁后的真正内容</div>
@@ -305,10 +315,10 @@
             }, 40);
         };
 
-        // --- 2. Swiper 初始化 ---
+        // --- 2. Swiper 初始化 (包含自动跳转修复!) ---
         var mySwiper = new Swiper('.swiper-v', {
             direction: 'vertical', speed: 1000, mousewheel: true, effect: 'fade', fadeEffect: { crossFade: true }, touchStartPreventDefault: false,
-            noSwipingSelector: '#journey-slide',
+            // 删除了 noSwipingSelector，现在允许手动滑动了
             on: {
                 slideChangeTransitionEnd: function () { 
                     swiperAnimate(this);
@@ -334,6 +344,15 @@
                                 const delayTime = parseInt(stop.getAttribute('data-time'));
                                 setTimeout(() => { stop.classList.add('active'); }, delayTime);
                             });
+
+                            // 🌟 核心修复：18.5秒后自动跳转到下一页 🌟
+                            setTimeout(() => {
+                                // 只有当用户还停留在这一页时才自动跳，避免用户已经手动滑走了
+                                if(this.activeIndex === 4) {
+                                    this.slideNext();
+                                }
+                            }, 18500);
+
                         } else {
                             journeySlide.classList.remove('start-journey');
                             stops.forEach(stop => { stop.classList.remove('active'); });
@@ -361,14 +380,14 @@
             });
         }
 
-        // --- 3. 交互逻辑 (美罗城) ---
+        // --- 3. 交互逻辑 ---
         function launchWatercolorFireworks() { const container = document.getElementById('fireworks-container'); if(!container) return; const centerX = window.innerWidth / 2; const centerY = window.innerHeight * 0.35; for (let w = 0; w < 5; w++) { setTimeout(() => { for (let i = 0; i < 60; i++) { createParticle(container, centerX, centerY); } }, w * 250); } }
         function createParticle(container, x, y) { const particle = document.createElement('div'); particle.classList.add('watercolor-particle'); container.appendChild(particle); const size = Math.random() * 30 + 10 + 'px'; particle.style.width = size; particle.style.height = size; const hues = [45, 35, 330, 25]; const hue = hues[Math.floor(Math.random() * hues.length)]; particle.style.background = `radial-gradient(circle, hsla(${hue}, 100%, 70%, 1) 0%, hsla(${hue}, 100%, 60%, 0) 70%)`; particle.style.left = x + 'px'; particle.style.top = y + 'px'; const angle = Math.random() * Math.PI * 2; const distance = Math.random() * 250 + 80; const destX = x + Math.cos(angle) * distance; const destY = y + Math.sin(angle) * distance; const duration = Math.random() * 1.5 + 1.5 + 's'; setTimeout(() => { particle.style.transition = `all ${duration} cubic-bezier(0.25, 0.46, 0.45, 0.94)`; particle.style.transform = `translate(${destX - x}px, ${destY - y}px) scale(${Math.random() * 2 + 1})`; particle.style.opacity = '0.9'; setTimeout(() => { particle.style.opacity = '0'; }, parseFloat(duration) * 1000 * 0.7); }, 50); setTimeout(() => { particle.remove(); }, 3500); }
         
         const metroSlide = document.getElementById('metro-slide'); const metroTopLayer = document.getElementById('metroTopLayer'); const metroHint = document.getElementById('metroHint'); const metroRevealBox = document.getElementById('metroRevealBox'); let touchStartX = 0; let touchStartY = 0; let isRevealed = false;
         if (metroSlide && metroTopLayer) { metroSlide.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; touchStartY = e.changedTouches[0].screenY; }, {passive: true}); metroSlide.addEventListener('touchend', function(e) { if (isRevealed) return; let touchEndX = e.changedTouches[0].screenX; let touchEndY = e.changedTouches[0].screenY; let diffX = touchStartX - touchEndX; let diffY = Math.abs(touchStartY - touchEndY); if (diffX > 50 && diffX > diffY * 1.5) { metroTopLayer.classList.add('do-fade'); if(metroHint) metroHint.style.display = 'none'; launchWatercolorFireworks(); if(metroRevealBox) { metroRevealBox.innerHTML = '<p class="single-reveal-text">11月21日，你与他第一次线下见面，<br>是否符合你想象中的样子？</p>'; metroRevealBox.classList.add('show'); } isRevealed = true; } }, {passive: true}); }
 
-        // --- 4. 密码锁逻辑 (Page 6) ---
+        // --- 4. 密码锁逻辑 (固定密码 147369) ---
         const correctPass = "147369";
         let inputPass = "";
         const dots = document.querySelectorAll('.lock-dot');
@@ -381,20 +400,14 @@
                 if(e.target.classList.contains('pad-btn') && !e.target.classList.contains('empty')) {
                     const num = e.target.getAttribute('data-num');
                     if(inputPass.length < 6) {
-                        // 记录输入
                         inputPass += num;
-                        // 点亮圆点
                         dots[inputPass.length - 1].classList.add('filled');
-                        
-                        // 检查是否输完6位
                         if(inputPass.length === 6) {
                             setTimeout(() => {
                                 if(inputPass === correctPass) {
-                                    // 密码正确：解锁
                                     lockScreen.classList.add('unlocked');
                                     unlockedContent.classList.add('show');
                                 } else {
-                                    // 密码错误：震动并重置
                                     dots.forEach(dot => dot.classList.add('error'));
                                     setTimeout(() => {
                                         inputPass = "";
